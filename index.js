@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
-const port = 8080;
+const port = process.env.MONGOPORT;
 const authRoute = require("./routes").auth;
 const courseRoute = require("./routes").course;
 const passport = require("passport");
@@ -11,10 +11,11 @@ const { course } = require("./models");
 require("./confg/passport")(passport);
 const cors = require("cors");
 const path = require("path");
+const mongodbUrl = "mongodb://127.0.0.1/mernDB";
 
 // 連結MongoDB
 mongoose
-  .connect("mongodb://127.0.0.1/mernDB")
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connecting to mongodb...");
   })
