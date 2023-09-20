@@ -1,5 +1,6 @@
 import axios from "axios";
 const API_URL = "http://localhost:8080/api/courses";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL + "api/courses";
 
 class CourseService {
   constructor(token) {
@@ -14,7 +15,7 @@ class CourseService {
   /* ---------------------------------- 創建課程 ---------------------------------- */
   post(title, description, price) {
     return axios.post(
-      API_URL,
+      BASE_URL,
       { title, description, price },
       {
         headers: {
@@ -26,7 +27,7 @@ class CourseService {
 
   /* ---------------------------- 使用學生 id，找到學生註冊的課程 --------------------------- */
   getEnrolledCourses(_id) {
-    return axios.get(API_URL + "/student/" + _id, {
+    return axios.get(BASE_URL + "/student/" + _id, {
       headers: {
         Authorization: this.token,
       },
@@ -35,7 +36,7 @@ class CourseService {
 
   /* ----------------------- 用 instructor id，找到該講師所擁有的課程 ---------------------- */
   get(_id) {
-    return axios.get(API_URL + "/instructor/" + _id, {
+    return axios.get(BASE_URL + "/instructor/" + _id, {
       headers: {
         Authorization: this.token,
       },
@@ -44,7 +45,7 @@ class CourseService {
 
   /* -------------------------------- 用課程名稱搜尋課程 ------------------------------- */
   getCourseByName(name) {
-    return axios.get(API_URL + "/findByName/" + name, {
+    return axios.get(BASE_URL + "/findByName/" + name, {
       headers: {
         Authorization: this.token,
       },
@@ -53,7 +54,7 @@ class CourseService {
 
   enroll(_id) {
     return axios.post(
-      API_URL + "/enroll/" + _id,
+      BASE_URL + "/enroll/" + _id,
       {},
       {
         headers: {
@@ -65,7 +66,7 @@ class CourseService {
 
   /* --------------------------------- 獲得所有課程 --------------------------------- */
   getAllCourse(_id) {
-    return axios.get(API_URL + "/", {
+    return axios.get(BASE_URL + "/", {
       headers: {
         Authorization: this.token,
       },
