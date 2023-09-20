@@ -10,6 +10,7 @@ const passport = require("passport");
 const { course } = require("./models");
 require("./confg/passport")(passport);
 const cors = require("cors");
+const path = require("path");
 
 // 連結MongoDB
 mongoose
@@ -25,6 +26,7 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.use("/api/user", authRoute);
 
@@ -36,6 +38,14 @@ app.use(
   courseRoute
 );
 
+if (
+  process.env.NODE_ENV === "production" ||
+  process.env.NODE_ENV === "staging"
+) {
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 // port 不使用3000(因為是 React 預設使用的 port )
 app.listen(port, () => {
   console.log(`後端伺服器運行在port ${port}`);
