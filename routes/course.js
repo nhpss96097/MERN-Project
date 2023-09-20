@@ -2,7 +2,7 @@ const courseModel = require("../models/course-model");
 
 const router = require("express").Router();
 const Course = require("../models").course;
-const courseValidation = require("../validation").courseValidation;
+const courseValidation = require("../confg/validation").courseValidation;
 
 router.use((req, res, next) => {
   console.log("course route 正在接受 request");

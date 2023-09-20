@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const registerValidation = require("../validation").registerValidation;
-const loginValidation = require("../validation").loginValidation;
+const registerValidation = require("../confg/validation").registerValidation;
+const loginValidation = require("../confg/validation").loginValidation;
 const User = require("../models").user;
 const jwt = require("jsonwebtoken");
 

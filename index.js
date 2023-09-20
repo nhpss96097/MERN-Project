@@ -39,7 +39,7 @@ app.use(
 );
 
 // port 不使用3000(因為是 React 預設使用的 port )
-app.listen(port, () => {
+app.listen(`0.0.0.0:${port}`, () => {
   // console.log(`後端伺服器運行在port ${port}`);
   console.log(`後端伺服器運行中`);
 });
