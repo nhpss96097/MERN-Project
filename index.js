@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
-const port = process.env.MONGOPORT;
+const port = process.env.PORT || 8080;
 const authRoute = require("./routes").auth;
 const courseRoute = require("./routes").course;
 const passport = require("passport");
@@ -39,7 +39,7 @@ app.use(
 );
 
 // port 不使用3000(因為是 React 預設使用的 port )
-app.listen(`0.0.0.0:${port}`, () => {
-  // console.log(`後端伺服器運行在port ${port}`);
-  console.log(`後端伺服器運行中`);
+app.listen(port, () => {
+  console.log(`後端伺服器運行在port ${port}`);
+  // console.log(`後端伺服器運行中`);
 });
